@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/PopularMoviesFragment">
+
+    <fragment
+        android:id="@+id/PopularMoviesFragment"
+        android:name="com.andysworkshop.movies.popularmoviesscreen.PopularMoviesFragment"
+        android:label="@string/popular_movies_fragment_label"
+        tools:layout="@layout/fragment_popular_movies">
+
+        <action
+            android:id="@+id/action_PopularMoviesFragment_to_MovieDetailFragment"
+            app:destination="@id/MovieDetailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out">
+            <argument
+                android:name="movieId"
+                app:argType="string" />
+            <argument
+                android:name="posterPath"
+                app:argType="string" />
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/MovieDetailFragment"
+        android:name="com.andysworkshop.movies.moviedetailsscreen.MovieDetailFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_movie_details">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/PopularMoviesFragment" />
+
+        <argument
+            android:name="movieId"
+            app:argType="string" />
+
+        <argument
+            android:name="posterPath"
+            app:argType="string" />
+    </fragment>
+</navigation>
