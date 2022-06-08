@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -39,7 +40,12 @@ class PopularMoviesFragment : Fragment() {
 
     private val viewModel: PopularMoviesViewModel by viewModels { viewModelFactory }
 
+
     private val moviesListData: MutableList<PopularMoviesUIData> = mutableListOf()
+
+    @VisibleForTesting
+    val moviesListDataVisibleForTest get() = moviesListData
+
     private val moviesViewAdapter = MoviesRecyclerAdapter(moviesListData) { movieData, pos ->
         viewModel.onPosterClicked(movieData, pos)
         shouldSavePositionOnViewDestroy = false
